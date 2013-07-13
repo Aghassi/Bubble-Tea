@@ -11,8 +11,8 @@
 /*    */ {
 /* 14 */   protected static JFrame mainWindow = new JFrame();
 /*    */ 
-/* 17 */   protected static JButton trueButton = new JButton("YES");
-/* 18 */   protected static JButton falseButton = new JButton("NO");
+/* 17 */   protected static JButton trueButton = new JButton("Yes");
+/* 18 */   protected static JButton falseButton = new JButton("No");
 /* 19 */   protected static JTextArea textField = new JTextArea("Do you like milk in your tea?");
 /* 20 */   protected static JButton resetButton = new JButton("Reset");
 /*    */ 
