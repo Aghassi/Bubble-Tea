@@ -1,14 +1,11 @@
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.Arrays;
 /*     */ import java.util.Hashtable;
-/*     */ import javax.swing.JButton;
-/*     */ import javax.swing.JFrame;
-/*     */ import javax.swing.JPanel;
 /*     */ import javax.swing.JTextArea;
 /*     */ 
 /*     */ public class Options extends Window
 /*     */ {
-/*  18 */   private static String[] mainOptions = { "Earthy", "Fruity", "Tangy" };
+/*  18 */   private static String[] mainOptions = { "Earthy", "Fruity", "Tangy", "Less Sweet", "More Sweet" };
 /*  19 */   private static String[] secondaryOptions = { "Less Sweet", "More Sweet" };
 /*     */ 
 /*  24 */   private static String[] _11 = { "1. Kumquat-Lemon \n", 
@@ -52,14 +49,14 @@
 /*  61 */     "6. Chai \n", 
 /*  62 */     "7. Sesame" };
 /*     */ 
-/*  65 */   private static Hashtable<String, Object[]> lookUp = new Hashtable(7);
-/*  66 */   private static ArrayList<BubbleNode> answers = new ArrayList(9);
+/*  65 */   private static Hashtable<String, Object[]> lookUp = new Hashtable<String, Object[]>(7);
+/*  66 */   private static ArrayList<BubbleNode> answers = new ArrayList<BubbleNode>(9);
 /*  67 */   private static int answerCount = 0;
 /*     */ 
 /*     */   public static void updateUI(String answer)
 /*     */   {
 /*     */     BubbleNode nodeCurrent;
-/*     */     BubbleNode nodeCurrent;
+/*     */
 /*  79 */     if (answer.contains(trueButton.getText())) {
 /*  80 */       nodeCurrent = new BubbleNode(answer, 0);
 /*     */     }
@@ -162,7 +159,7 @@
 /* 192 */     mainWindow.repaint();
 /*     */ 
 /* 194 */     answerCount = 0;
-/* 195 */     answers = new ArrayList(9);
+/* 195 */     answers = new ArrayList<BubbleNode>(9);
 /*     */   }
 /*     */ }
 
