@@ -5,7 +5,7 @@ import javax.swing.JTextArea;
 
 public class Options extends Window
 {
-	/*  18 */   private static String[] mainOptions = { "Yes", "No", "Earthy", "Fruity","Fruity", "Tangy", "Less Sweet", "More Sweet" };
+	/*  18 */   private static String[] mainOptions = { "Yes", "No", "Earthy", "Fruity", "Tangy", "Less Sweet", "More Sweet" };
 	/*  19 */   private static String[] secondaryOptions = { "Less Sweet", "More Sweet" };
 
 	/*  24 */   private static String[] _11 = { "1. Kumquat-Lemon \n", 
