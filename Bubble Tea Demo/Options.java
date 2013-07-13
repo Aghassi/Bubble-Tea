@@ -5,7 +5,7 @@ import javax.swing.JTextArea;
 
 public class Options extends Window
 {
-	/*  18 */   protected static String[] mainOptions = { "Yes", "No", "Earthy", "Fruity", "Tangy", "Less Sweet", "More Sweet" };
+	/*  18 */   private static String[] mainOptions = { "Yes", "No", "Earthy", "Fruity","Fruity", "Tangy", "Less Sweet", "More Sweet" };
 	/*  19 */   private static String[] secondaryOptions = { "Less Sweet", "More Sweet" };
 
 	/*  24 */   private static String[] _11 = { "1. Kumquat-Lemon \n", 
@@ -59,7 +59,7 @@ public class Options extends Window
 		addAnswer(answer);
 		
 		if (Arrays.asList(mainOptions).contains(answer)) {
-			if (answer.contains(mainOptions[4]))
+			if (answer.contains(mainOptions[5]))
 			{
 				grid.remove(trueButton);
 				grid.remove(falseButton);
@@ -68,6 +68,9 @@ public class Options extends Window
 			}
 			else
 			{
+				if(answer.contains(mainOptions[1])){
+					childrenCount = 2;
+				}
 				childrenCount = childrenCount*2;
 				trueButton.setText(mainOptions[childrenCount]);
 				falseButton.setText(mainOptions[childrenCount + 1]);
@@ -75,10 +78,12 @@ public class Options extends Window
 				if(childrenCount > mainOptions.length){
 					displayAnswer();
 				}
+				if(answer.contains(falseButton.getText())){
+					childrenCount = childrenCount + 1;
+				}
 
 			}
 		}
-		answerCount++;
 
 	}
 	
@@ -94,6 +99,7 @@ public class Options extends Window
 			nodeCurrent = new BubbleNode(add, 1);
 		}
 		answers.add(answerCount, nodeCurrent);
+		answerCount++;
 
 	}
 
@@ -145,20 +151,24 @@ public class Options extends Window
 		/* 179 */     lookUp.put("000", _000);
 	}
 
+	/**
+	 * Resets the window
+	 */
 	protected static void reset() {
-		/* 183 */     trueButton.setText("YES");
-		/* 184 */     falseButton.setText("NO");
-		/* 185 */     textField.setText("Do you like milk in your tea?");
+		trueButton.setText("Yes");
+		falseButton.setText("No");
+		textField.setText("Do you like milk in your tea?");
 
-		/* 187 */     grid.removeAll();
-		/* 188 */     grid.add(textField);
-		/* 189 */     grid.add(trueButton);
-		/* 190 */     grid.add(falseButton);
-		/* 191 */     mainWindow.validate();
-		/* 192 */     mainWindow.repaint();
+		grid.removeAll();
+		grid.add(textField);
+		grid.add(trueButton);
+		grid.add(falseButton);
+		mainWindow.validate();
+		mainWindow.repaint();
 
-		/* 194 */     answerCount = 0;
-		/* 195 */     answers = new ArrayList<BubbleNode>(9);
+		answerCount = 0;
+		childrenCount = 1;
+		answers = new ArrayList<BubbleNode>(9);
 	}
 }
 
