@@ -5,8 +5,13 @@ import javax.swing.JTextArea;
 
 public class Options extends Window
 {
-	/*  18 */   private static String[] mainOptions = { "Yes", "No", "Earthy", "Fruity", "Tangy", "Less Sweet", "More Sweet" };
-	/*  19 */   private static String[] secondaryOptions = { "Less Sweet", "More Sweet" };
+	/*  18 */   private static String[] mainOptions = {"Start",
+		"Yes", "No",
+		"Earthy", "Fruity",
+		"Fruity", "Tangy",
+		"Less Sweet", "More Sweet",
+		"Less Sweet", "More Sweet",
+		"Less Sweet", "More Sweet"};
 
 	/*  24 */   private static String[] _11 = { "1. Kumquat-Lemon \n", 
 		/*  25 */     "2. Green Apple \n", 
@@ -54,12 +59,28 @@ public class Options extends Window
 	/*  67 */   private static int answerCount = 0;
 	/*	   */	private static int childrenCount = 1;
 
+	/**
+	 * @param answer The option chosen by the button pressed
+	 * Updates the UI to match the answer chosen.
+	 * Keeps track of the children count
+	 */
 	public static void updateUI(String answer)
 	{
 		addAnswer(answer);
+		if(answer.contains(mainOptions[2])){
+			childrenCount = 2;
+		}
+		childrenCount = childrenCount*2 + 1;
 		
-		if (Arrays.asList(mainOptions).contains(answer)) {
-			if (answer.contains(mainOptions[5]))
+		if(answer.contains(mainOptions[7]) || answer.contains(mainOptions[8])){
+			grid.remove(trueButton);
+			grid.remove(falseButton);
+			grid.remove(textField);
+			displayAnswer();
+		}
+
+		else if(Arrays.asList(mainOptions).contains(answer)) {
+			if (answer.contains(mainOptions[6]))
 			{
 				grid.remove(trueButton);
 				grid.remove(falseButton);
@@ -68,12 +89,9 @@ public class Options extends Window
 			}
 			else
 			{
-				if(answer.contains(mainOptions[1])){
-					childrenCount = 2;
-				}
-				childrenCount = childrenCount*2;
+				System.out.println(childrenCount);
 				trueButton.setText(mainOptions[childrenCount]);
-				falseButton.setText(mainOptions[childrenCount + 1]);
+				falseButton.setText(mainOptions[childrenCount+1]);
 				textField.setText("Do you like " + mainOptions[childrenCount] + " or " + mainOptions[childrenCount+1] + "?");
 				if(childrenCount > mainOptions.length){
 					displayAnswer();
@@ -171,8 +189,3 @@ public class Options extends Window
 		answers = new ArrayList<BubbleNode>(9);
 	}
 }
-
-/* Location:           /Volumes/Applications/Dropbox/Personal/Coding/Java/Bubble Tea Demo.jar
- * Qualified Name:     Options
- * JD-Core Version:    0.6.2
- */
