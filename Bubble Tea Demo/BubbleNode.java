@@ -1,31 +1,50 @@
-/*    */ public class BubbleNode
-/*    */ {
-/*    */   private String answer;
-/*  5 */   private int place = 0;
-/*    */ 
-/*    */   public BubbleNode(String answer, int number)
-/*    */   {
-/* 13 */     this.answer = answer;
-/* 14 */     setPlace(number);
-/*    */   }
-/*    */ 
-/*    */   public String getElement()
-/*    */   {
-/* 22 */     return this.answer;
-/*    */   }
-/*    */ 
-/*    */   public int getPlace()
-/*    */   {
-/* 30 */     return this.place;
-/*    */   }
-/*    */ 
-/*    */   public void setPlace(int place)
-/*    */   {
-/* 37 */     this.place = place;
-/*    */   }
-/*    */ }
-
-/* Location:           /Volumes/Applications/Dropbox/Personal/Coding/Java/Bubble Tea Demo.jar
- * Qualified Name:     BubbleNode
- * JD-Core Version:    0.6.2
+/**
+ * A class to deal with nodes 
+ * @author David Aghassi
+ *
  */
+public class BubbleNode
+{
+	//Variables
+	private String answer;
+	private int place = 0;
+
+	/**
+	 * Creates a new node
+	 * @param answer The string of the answer chosen
+	 * @param number A number assigned based on what was chosen
+	 * This number will be chained together with others to find the choices later on
+	 */
+	public BubbleNode(String answer, int number)
+	{
+		this.answer = answer;
+		setPlace(number);
+	}
+
+	/**
+	 * Gets the answer stored in the node
+	 * @return The string stored in the node
+	 */
+	public String getElement()
+	{
+		return this.answer;
+	}
+
+	/**
+	 * Gets the number stored in the node
+	 * @return The number stored in the node
+	 */
+	public int getPlace()
+	{
+		return this.place;
+	}
+
+	/**
+	 * Sets the number stored in the node
+	 * @param place The number to be stored in the node
+	 */
+	private void setPlace(int place)
+	{
+		this.place = place;
+	}
+}

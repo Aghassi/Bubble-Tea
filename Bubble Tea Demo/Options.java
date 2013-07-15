@@ -3,9 +3,14 @@ import java.util.Arrays;
 import java.util.Hashtable;
 import javax.swing.JTextArea;
 
+/**
+ * A class to deal with the events of the window
+ * @author David Aghassi
+ *
+ */
 public class Options extends Window
 {
-	/*  18 */   private static String[] mainOptions = {"Start",
+	private static String[] mainOptions = {"Start",
 		"Yes", "No",
 		"Earthy", "Fruity",
 		"Fruity", "Tangy",
@@ -13,51 +18,51 @@ public class Options extends Window
 		"Less Sweet", "More Sweet",
 		"Less Sweet", "More Sweet"};
 
-	/*  24 */   private static String[] _11 = { "1. Kumquat-Lemon \n", 
-		/*  25 */     "2. Green Apple \n", 
-		/*  26 */     "3. Kiwi \n", 
-		/*  27 */     "4. Grapefruite \n", 
-	/*  28 */     "5. Lemon \n" };
+	private static String[] _11 = { "1. Kumquat-Lemon \n", 	//Tangy
+		"2. Green Apple \n", 
+		"3. Kiwi \n", 
+		"4. Grapefruite \n", 
+	"5. Lemon \n" };
 
-	/*  29 */   private static String[] _101 = { "1.Mango \n", 
-		/*  30 */     "2. Strawberry \n", 
-		/*  31 */     "3. Blackberry \n", 
-		/*  32 */     "4. Rasberry \n", 
-		/*  33 */     "5. Grape \n", 
-		/*  34 */     "6. PassionFruit \n", 
-		/*  35 */     "7. Lychee \n", 
-		/*  36 */     "8. Peach (white) \n", 
-		/*  37 */     "9. Rose \n", 
-		/*  38 */     "10. Rose-Lychee \n", 
-	/*  39 */     "11. Pinapple \n" };
+	private static String[] _101 = { "1.Mango \n", 	//Fruity More Sweet Milk
+		"2. Strawberry \n", 
+		"3. Blackberry \n", 
+		"4. Rasberry \n", 
+		"5. Grape \n", 
+		"6. PassionFruit \n", 
+		"7. Lychee \n", 
+		"8. Peach (white) \n", 
+		"9. Rose \n", 
+		"10. Rose-Lychee \n", 
+	"11. Pinapple \n" };
 
-	/*  41 */   private static String[] _100 = { "1. Peach \n", 
-		/*  42 */     "2. Honey \n", 
-		/*  43 */     "3. Peppermint \n", 
-	/*  44 */     "4. Honeydew \n" };
+	private static String[] _100 = { "1. Peach \n", 	//Fruity Less Sweet Milk
+		"2. Honey \n", 
+		"3. Peppermint \n", 
+	"4. Honeydew \n" };
 
-	/*  46 */   private static String[] _011 = _101;
-	/*  47 */   private static String[] _010 = _100;
-	/*  48 */   private static String[] _001 = { "1. Boba \n", 
-		/*  49 */     "2. Almond \n", 
-		/*  50 */     "3. Coconut \n", 
-		/*  51 */     "4. Coffee \n", 
-		/*  52 */     "5. Red Bean \n", 
-		/*  53 */     "6. Green milk \n", 
-	/*  54 */     "7. Mocha" };
+	private static String[] _011 = _101;	//Fruity More Sweet No Milk
+	private static String[] _010 = _100;	//Fruity Less Sweet No Milk
+	private static String[] _001 = { "1. Boba \n", 		//Earthy Less Sweet
+		"2. Almond \n", 
+		"3. Coconut \n", 
+		"4. Coffee \n", 
+		"5. Red Bean \n", 
+		"6. Green milk \n", 
+	"7. Mocha" };
 
-	/*  56 */   private static String[] _000 = { "1. Thai \n", 
-		/*  57 */     "2. Taro \n", 
-		/*  58 */     "3. Vanilla \n", 
-		/*  59 */     "4. Chocolate \n", 
-		/*  60 */     "5. Vanilla Latte \n", 
-		/*  61 */     "6. Chai \n", 
-	/*  62 */     "7. Sesame" };
+	private static String[] _000 = { "1. Thai \n", 	//Earthy More Sweet
+		"2. Taro \n", 
+		"3. Vanilla \n", 
+		"4. Chocolate \n", 
+		"5. Vanilla Latte \n", 
+		"6. Chai \n", 
+	"7. Sesame" };
 
-	/*  65 */   private static Hashtable<String, Object[]> lookUp = new Hashtable<String, Object[]>(7);
-	/*  66 */   private static ArrayList<BubbleNode> answers = new ArrayList<BubbleNode>(9);
-	/*  67 */   private static int answerCount = 0;
-	/*	   */	private static int childrenCount = 1;
+	private static Hashtable<String, Object[]> lookUp = new Hashtable<String, Object[]>(7);
+	private static ArrayList<BubbleNode> answers = new ArrayList<BubbleNode>(9);
+	private static int answerCount = 0;
+	private static int childrenCount = 1;
 
 	/**
 	 * @param answer The option chosen by the button pressed
@@ -66,12 +71,22 @@ public class Options extends Window
 	 */
 	public static void updateUI(String answer)
 	{
+		/*
+		 * Add the answer the list of answers
+		 */
 		addAnswer(answer);
+
+		/*
+		 * Updates the count if No is the starting choice
+		 */
 		if(answer.contains(mainOptions[2])){
 			childrenCount = 2;
 		}
 		childrenCount = childrenCount*2 + 1;
-		
+
+		/*
+		 * If Less Sweet or More Sweet, show answers
+		 */
 		if(answer.contains(mainOptions[7]) || answer.contains(mainOptions[8])){
 			grid.remove(trueButton);
 			grid.remove(falseButton);
@@ -80,6 +95,9 @@ public class Options extends Window
 		}
 
 		else if(Arrays.asList(mainOptions).contains(answer)) {
+			/*
+			 * If Tangy, show answers
+			 */
 			if (answer.contains(mainOptions[6]))
 			{
 				grid.remove(trueButton);
@@ -87,29 +105,33 @@ public class Options extends Window
 				grid.remove(textField);
 				displayAnswer();
 			}
+			/*
+			 * Update the UI to show the proper buttons
+			 */
 			else
 			{
 				System.out.println(childrenCount);
 				trueButton.setText(mainOptions[childrenCount]);
 				falseButton.setText(mainOptions[childrenCount+1]);
 				textField.setText("Do you like " + mainOptions[childrenCount] + " or " + mainOptions[childrenCount+1] + "?");
-				if(childrenCount > mainOptions.length){
-					displayAnswer();
-				}
-				if(answer.contains(falseButton.getText())){
-					childrenCount = childrenCount + 1;
-				}
-
 			}
 		}
 
 	}
-	
+
 	/**
 	 * @param add Adds the given answer to the answer list
 	 */
 	private static void addAnswer(String add){
+		/*
+		 * Create new node
+		 */
 		BubbleNode nodeCurrent;
+
+		/*
+		 * Populate the node with the answer
+		 * Then add it to the array of choices made
+		 */
 		if (add.contains(trueButton.getText())) {
 			nodeCurrent = new BubbleNode(add, 0);
 		}
@@ -121,52 +143,78 @@ public class Options extends Window
 
 	}
 
-
+	/**
+	 * A method to organize the information to be displayed
+	 * on screen once the final choice is made
+	 */
 	private static void displayAnswer()
 	{
-		/* 132 */     populateHash();
+		/*
+		 * Creates the hashtable
+		 */
+		populateHash();
 
-		/* 135 */     String userAnswerList = "";
-		/* 136 */     StringBuilder builder = new StringBuilder();
-		/* 137 */     for (int index = 0; index < answers.size(); index++) {
-			/* 138 */       if (index == answers.size() - 1) {
-				/* 139 */         builder.append("and " + ((BubbleNode)answers.get(index)).getElement() + ".");
+		/*
+		 * Creates a string of the answers given
+		 */
+		String userAnswerList = "";
+		StringBuilder builder = new StringBuilder();
+		for (int index = 0; index < answers.size(); index++) {
+			if (index == answers.size() - 1) 
+			{
+				builder.append("and " + ((BubbleNode)answers.get(index)).getElement() + ".");
 			}
-			else {
-				/* 142 */         builder.append(((BubbleNode)answers.get(index)).getElement() + ", ");
+			else 
+			{
+				builder.append(((BubbleNode)answers.get(index)).getElement() + ", ");
 			}
 		}
-		/* 145 */     userAnswerList = builder.toString();
-		/* 146 */     builder = new StringBuilder();
+		userAnswerList = builder.toString();
 
-		/* 149 */     String treePathNumber = "";
-		/* 150 */     for (int index = 0; index < answers.size(); index++) {
-			/* 151 */       builder.append(((BubbleNode)answers.get(index)).getPlace());
+		/*
+		 * Creates a new builder and creates
+		 * a string of numbers to look up the options in the
+		 * hashtable based on the user's choices
+		 */
+		String treePathNumber = "";
+		builder = new StringBuilder();
+		for (int index = 0; index < answers.size(); index++) {
+			builder.append(((BubbleNode)answers.get(index)).getPlace());
 		}
-		/* 153 */     treePathNumber = builder.toString();
+		treePathNumber = builder.toString();
 
-		/* 156 */     String returnOptions = null;
-		/* 157 */     if (lookUp.containsKey(treePathNumber)) {
-			/* 158 */       returnOptions = Arrays.toString((Object[])lookUp.get(treePathNumber));
+		/*
+		 * Looks up the options based on the prior string
+		 * made
+		 */
+		String returnOptions = null;
+		if (lookUp.containsKey(treePathNumber)) {
+			returnOptions = Arrays.toString((Object[])lookUp.get(treePathNumber));
 		}
 
-		/* 163 */     JTextArea answerField = new JTextArea("Since you chose: \n" + userAnswerList.toString() + "\n \n You would probably like: \n" + returnOptions);
-		/* 164 */     answerField.setEditable(false);
-		/* 165 */     grid.add(answerField);
-		/* 166 */     grid.add(resetButton);
-		/* 167 */     mainWindow.validate();
-		/* 168 */     mainWindow.repaint();
+		/*
+		 * Updates the UI
+		 */
+		JTextArea answerField = new JTextArea("Since you chose: \n" + userAnswerList.toString() + "\n \n You would probably like: \n" + returnOptions);
+		answerField.setEditable(false);
+		grid.add(answerField);
+		grid.add(resetButton);
+		mainWindow.validate();
+		mainWindow.repaint();
 	}
 
+	/**
+	 * Populates the hashtable for use
+	 */
 	private static void populateHash()
 	{
-		/* 173 */     lookUp.put("11", _11);
-		/* 174 */     lookUp.put("101", _101);
-		/* 175 */     lookUp.put("100", _100);
-		/* 176 */     lookUp.put("011", _011);
-		/* 177 */     lookUp.put("010", _010);
-		/* 178 */     lookUp.put("001", _001);
-		/* 179 */     lookUp.put("000", _000);
+		lookUp.put("11", _11);
+		lookUp.put("101", _101);
+		lookUp.put("100", _100);
+		lookUp.put("011", _011);
+		lookUp.put("010", _010);
+		lookUp.put("001", _001);
+		lookUp.put("000", _000);
 	}
 
 	/**
