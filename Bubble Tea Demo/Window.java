@@ -1,7 +1,10 @@
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,7 +28,8 @@ public class Window
 	protected static JTextArea textField = new JTextArea("Do you want cream or no cream in your tea?");
 	
 	//Grids
-	protected static JPanel grid = new JPanel();
+	protected static JPanel grid = new JPanel(new GridBagLayout());
+	protected static GridBagConstraints constraint = new GridBagConstraints();
 
 	public static void main(String[] args)
 	{
@@ -44,9 +48,8 @@ public class Window
 		 * Creates the grid and buttons
 		 * Tells them how to be layed out
 		 */
-		grid.setLayout(new FlowLayout(1, 100, 10));
-		trueButton.setPreferredSize(new Dimension(200, 100));
-		falseButton.setPreferredSize(new Dimension(200, 100));
+		trueButton.setPreferredSize(new Dimension(100, 100));
+		falseButton.setPreferredSize(new Dimension(100, 100));
 		textField.setEditable(false);
 
 		//Designates the listener for the true button
@@ -82,9 +85,20 @@ public class Window
 			});
 		
 		//Adds proper fields to the grid
-		grid.add(textField);
-		grid.add(trueButton);
-		grid.add(falseButton);
+		constraint.gridwidth = 2;
+		constraint.gridx = 1;
+		constraint.gridy = 0;
+		grid.add(textField, constraint);
+		
+		constraint.insets = new Insets(0,0,0,125);
+		constraint.gridx = 1;
+		constraint.gridy = 1;
+		grid.add(trueButton, constraint);
+		
+		constraint.insets = new Insets(0,125,0,0);
+		constraint.gridx = 2;
+		constraint.gridy = 1;
+		grid.add(falseButton,constraint);
 		
 		/*
 		 * Adds the grid to the window
