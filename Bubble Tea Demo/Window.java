@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -21,11 +22,12 @@ public class Window
 	protected static JFrame mainWindow = new JFrame();
 
 	//Buttons and Text
-	protected static JButton trueButton = new JButton("Cream");
-	protected static JButton falseButton = new JButton("No Cream");
+	protected static JButton trueButton = new JButton("Creamy");
+	protected static JButton falseButton = new JButton("No Creamy");
 	protected static JButton resetButton = new JButton("Reset");
 	protected static JButton backButton = new JButton("Back");
-	protected static JTextArea textField = new JTextArea("Do you want cream or no cream in your tea?");
+	protected static JTextArea textField = new JTextArea("Do you want creamyy or no creamyy in your tea?");
+	protected static JLabel choicesSoFar = new JLabel("So far you have chosen:", JLabel.CENTER);
 	
 	//Grids
 	protected static JPanel grid = new JPanel(new GridBagLayout());
@@ -85,20 +87,32 @@ public class Window
 			});
 		
 		//Adds proper fields to the grid
+		
+		constraint.insets = new Insets(20,0,0,0);
+		constraint.gridx = 1;
+		constraint.gridy = 3;
+		grid.add(choicesSoFar, constraint);
+		
+		constraint.anchor = GridBagConstraints.CENTER;
 		constraint.gridwidth = 2;
 		constraint.gridx = 1;
 		constraint.gridy = 0;
 		grid.add(textField, constraint);
 		
-		constraint.insets = new Insets(0,0,0,125);
+		constraint.anchor = GridBagConstraints.LAST_LINE_START;
 		constraint.gridx = 1;
 		constraint.gridy = 1;
 		grid.add(trueButton, constraint);
 		
-		constraint.insets = new Insets(0,125,0,0);
+		constraint.anchor = GridBagConstraints.LAST_LINE_END;
 		constraint.gridx = 2;
 		constraint.gridy = 1;
 		grid.add(falseButton,constraint);
+		
+		constraint.anchor = GridBagConstraints.CENTER;
+		constraint.gridx = 1;
+		constraint.gridy = 2;
+		grid.add(backButton, constraint);
 		
 		/*
 		 * Adds the grid to the window

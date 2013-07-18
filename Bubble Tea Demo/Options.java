@@ -1,6 +1,8 @@
+import java.awt.GridBagConstraints;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
+
 import javax.swing.JTextArea;
 
 /**
@@ -11,7 +13,7 @@ import javax.swing.JTextArea;
 public class Options extends Window
 {
 	private static String[] mainOptions = {"Start",
-		"Cream", "No Cream",
+		"Creamy", "No Creamy",
 		"Earthy", "Fruity",
 		"Fruity", "Tangy",
 		"Less Sweet", "More Sweet",
@@ -91,6 +93,7 @@ public class Options extends Window
 			grid.remove(trueButton);
 			grid.remove(falseButton);
 			grid.remove(textField);
+			grid.remove(backButton);
 			displayAnswer();
 		}
 
@@ -103,6 +106,7 @@ public class Options extends Window
 				grid.remove(trueButton);
 				grid.remove(falseButton);
 				grid.remove(textField);
+				grid.remove(backButton);
 				displayAnswer();
 			}
 			/*
@@ -140,6 +144,7 @@ public class Options extends Window
 		}
 		answers.add(answerCount, nodeCurrent);
 		answerCount++;
+		choicesSoFar.setText(choicesSoFar.getText() + " " + add);
 
 	}
 	
@@ -205,8 +210,16 @@ public class Options extends Window
 		 */
 		JTextArea answerField = new JTextArea("Since you chose: \n" + userAnswerList.toString() + "\n \n You would probably like: \n" + returnOptions);
 		answerField.setEditable(false);
-		grid.add(answerField);
-		grid.add(resetButton);
+		
+		constraint.gridx = 0;
+		constraint.gridy = 0;
+		grid.add(answerField,constraint);
+		
+		constraint.anchor = GridBagConstraints.PAGE_END;
+		constraint.gridx = 0;
+		constraint.gridy = 1;
+		grid.add(resetButton, constraint);
+		
 		mainWindow.validate();
 		mainWindow.repaint();
 	}
