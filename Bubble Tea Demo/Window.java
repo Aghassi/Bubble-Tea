@@ -18,11 +18,12 @@ public class Window
 	protected static JFrame mainWindow = new JFrame();
 
 	//Buttons and Text
-	protected static JButton trueButton = new JButton("Yes");
-	protected static JButton falseButton = new JButton("No");
-	protected static JTextArea textField = new JTextArea("Do you like milk in your tea?");
+	protected static JButton trueButton = new JButton("Cream");
+	protected static JButton falseButton = new JButton("No Cream");
 	protected static JButton resetButton = new JButton("Reset");
-
+	protected static JButton backButton = new JButton("Back");
+	protected static JTextArea textField = new JTextArea("Do you want cream or no cream in your tea?");
+	
 	//Grids
 	protected static JPanel grid = new JPanel();
 
@@ -71,6 +72,14 @@ public class Window
 						Options.reset();
 					}
 				});
+		
+		//Designates the listener for the back button
+		backButton.addActionListener(
+			new ActionListener() {
+				public void actionPerformed(ActionEvent e){
+					Options.back();
+				}
+			});
 		
 		//Adds proper fields to the grid
 		grid.add(textField);

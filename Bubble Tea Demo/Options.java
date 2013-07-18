@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 public class Options extends Window
 {
 	private static String[] mainOptions = {"Start",
-		"Yes", "No",
+		"Cream", "No Cream",
 		"Earthy", "Fruity",
 		"Fruity", "Tangy",
 		"Less Sweet", "More Sweet",
@@ -142,6 +142,14 @@ public class Options extends Window
 		answerCount++;
 
 	}
+	
+	/**
+	 * @param removes the previous answer given from the answer list
+	 */
+	private static void removeAnswer(){
+		answers.remove(answerCount);
+		answerCount--;
+	}
 
 	/**
 	 * A method to organize the information to be displayed
@@ -235,5 +243,17 @@ public class Options extends Window
 		answerCount = 0;
 		childrenCount = 1;
 		answers = new ArrayList<BubbleNode>(9);
+	}
+
+	/**
+	 * Reverts the items on screen to what they were
+	 * before the last option was chosen.
+	 * Updates lists by removing previous answer
+	 * Shrinks counting numbers accordingly 
+	 */
+	public static void back() {
+		removeAnswer();
+		
+		
 	}
 }
