@@ -1,15 +1,13 @@
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JPanel;
 
 /**
  * A class to handle the window displayed on screen
@@ -22,12 +20,12 @@ public class Window
 	protected static JFrame mainWindow = new JFrame();
 
 	//Buttons and Text
-	protected static JButton trueButton = new JButton("Creamy");
-	protected static JButton falseButton = new JButton("No Creamy");
+	protected static JButton trueButton = new JButton("Cream");
+	protected static JButton falseButton = new JButton("No Cream");
 	protected static JButton resetButton = new JButton("Reset");
 	protected static JButton backButton = new JButton("Back");
-	protected static JTextArea textField = new JTextArea("Do you want creamyy or no creamyy in your tea?");
-	protected static JLabel choicesSoFar = new JLabel("So far you have chosen:", JLabel.CENTER);
+	protected static JTextArea textField = new JTextArea("Do you want cream or no cream in your tea?");
+	protected static JTextArea choicesSoFar = new JTextArea("So far you have chosen:");
 	
 	//Grids
 	protected static JPanel grid = new JPanel(new GridBagLayout());
@@ -52,6 +50,16 @@ public class Window
 		 */
 		trueButton.setPreferredSize(new Dimension(100, 100));
 		falseButton.setPreferredSize(new Dimension(100, 100));
+		backButton.setPreferredSize(new Dimension(50,35));
+		textField.setPreferredSize(new Dimension(300, 50));
+		choicesSoFar.setPreferredSize(new Dimension(300,50));
+		
+		/*
+		 * Text area rules
+		 */
+		choicesSoFar.setLineWrap(true);
+		choicesSoFar.setEditable(false);
+		textField.setLineWrap(true);
 		textField.setEditable(false);
 
 		//Designates the listener for the true button
@@ -88,7 +96,6 @@ public class Window
 		
 		//Adds proper fields to the grid
 		
-		constraint.insets = new Insets(20,0,0,0);
 		constraint.gridx = 1;
 		constraint.gridy = 3;
 		grid.add(choicesSoFar, constraint);
@@ -105,7 +112,7 @@ public class Window
 		grid.add(trueButton, constraint);
 		
 		constraint.anchor = GridBagConstraints.LAST_LINE_END;
-		constraint.gridx = 2;
+		constraint.gridx = 1;
 		constraint.gridy = 1;
 		grid.add(falseButton,constraint);
 		

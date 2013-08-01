@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 public class Options extends Window
 {
 	private static String[] mainOptions = {"Start",
-		"Creamy", "No Creamy",
+		"Cream", "No Cream",
 		"Earthy", "Fruity",
 		"Fruity", "Tangy",
 		"Less Sweet", "More Sweet",
@@ -200,6 +200,7 @@ public class Options extends Window
 		 * Looks up the options based on the prior string
 		 * made
 		 */
+		System.out.print(treePathNumber);
 		String returnOptions = null;
 		if (lookUp.containsKey(treePathNumber)) {
 			returnOptions = Arrays.toString((Object[])lookUp.get(treePathNumber));
@@ -242,14 +243,38 @@ public class Options extends Window
 	 * Resets the window
 	 */
 	protected static void reset() {
-		trueButton.setText("Yes");
-		falseButton.setText("No");
-		textField.setText("Do you like milk in your tea?");
+		trueButton.setText("Cream");
+		falseButton.setText("No Cream");
+		textField.setText("Do you want cream or no cream in your tea?");
+		choicesSoFar.setText("So far you have chosen:");
 
 		grid.removeAll();
-		grid.add(textField);
-		grid.add(trueButton);
-		grid.add(falseButton);
+		
+		constraint.gridx = 1;
+		constraint.gridy = 3;
+		grid.add(choicesSoFar, constraint);
+		
+		constraint.anchor = GridBagConstraints.CENTER;
+		constraint.gridwidth = 2;
+		constraint.gridx = 1;
+		constraint.gridy = 0;
+		grid.add(textField, constraint);
+		
+		constraint.anchor = GridBagConstraints.LAST_LINE_START;
+		constraint.gridx = 1;
+		constraint.gridy = 1;
+		grid.add(trueButton, constraint);
+		
+		constraint.anchor = GridBagConstraints.LAST_LINE_END;
+		constraint.gridx = 1;
+		constraint.gridy = 1;
+		grid.add(falseButton,constraint);
+		
+		constraint.anchor = GridBagConstraints.CENTER;
+		constraint.gridx = 1;
+		constraint.gridy = 2;
+		grid.add(backButton, constraint);
+		
 		mainWindow.validate();
 		mainWindow.repaint();
 
