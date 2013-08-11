@@ -116,10 +116,6 @@ public class Window
 		constraint.gridy = 1;
 		grid.add(falseButton,constraint);
 		
-		constraint.anchor = GridBagConstraints.CENTER;
-		constraint.gridx = 1;
-		constraint.gridy = 2;
-		grid.add(backButton, constraint);
 		
 		/*
 		 * Adds the grid to the window

@@ -114,10 +114,17 @@ public class Options extends Window
 			 */
 			else
 			{
-				System.out.println(childrenCount);
 				trueButton.setText(mainOptions[childrenCount]);
 				falseButton.setText(mainOptions[childrenCount+1]);
 				textField.setText("Do you like " + mainOptions[childrenCount] + " or " + mainOptions[childrenCount+1] + "?");
+				if(answer.equals(mainOptions[1]) || answer.equals(mainOptions[2])){
+					constraint.anchor = GridBagConstraints.CENTER;
+					constraint.gridx = 1;
+					constraint.gridy = 2;
+					grid.add(backButton, constraint);
+					mainWindow.validate();
+					mainWindow.repaint();
+				}
 			}
 		}
 
@@ -136,7 +143,7 @@ public class Options extends Window
 		 * Populate the node with the answer
 		 * Then add it to the array of choices made
 		 */
-		if (add.contains(trueButton.getText())) {
+		if (add.equals(trueButton.getText())) {
 			nodeCurrent = new BubbleNode(add, 0);
 		}
 		else {
@@ -152,8 +159,26 @@ public class Options extends Window
 	 * @param removes the previous answer given from the answer list
 	 */
 	private static void removeAnswer(){
-		answers.remove(answerCount);
 		answerCount--;
+		answers.remove(answerCount);
+		
+		/*
+		 * Gets the length of the answers text
+		 * forms the last word by getting characters backward
+		 * stops at first space
+		 */
+		String wordRemoval = choicesSoFar.getText();
+		int removalSize = wordRemoval.length();
+		StringBuilder builder = new StringBuilder();
+		for(int index = removalSize-1; index>0; index--){
+			Character currentChar = wordRemoval.charAt(index);
+			if(currentChar.equals(' ')){
+				index = 0;
+				wordRemoval = wordRemoval.replaceAll(builder.toString(), "");
+				choicesSoFar.setText(wordRemoval.toString());
+			}
+			builder.append(wordRemoval.charAt(index));
+		}
 	}
 
 	/**
@@ -291,6 +316,21 @@ public class Options extends Window
 	 */
 	public static void back() {
 		removeAnswer();
+		
+		//Lowers the count so appropriate options can be displayed
+		childrenCount = (childrenCount/2);
+		if(childrenCount < 0){
+			childrenCount = 1;
+		}
+		else if(childrenCount <= 2){
+			grid.remove(backButton);
+			mainWindow.validate();
+			mainWindow.repaint();
+		}
+		
+		trueButton.setText(mainOptions[childrenCount]);
+		falseButton.setText(mainOptions[childrenCount+1]);
+		textField.setText("Do you like " + mainOptions[childrenCount] + " or " + mainOptions[childrenCount+1] + "?");
 		
 		
 	}
