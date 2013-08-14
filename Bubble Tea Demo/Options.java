@@ -168,17 +168,33 @@ public class Options extends Window
 		 * stops at first space
 		 */
 		String wordRemoval = choicesSoFar.getText();
-		int removalSize = wordRemoval.length();
+		int removalSize = wordRemoval.length();			//Size of the sentence
+		int removalIndex = removalSize -1;				//Index of current character to be removed
 		StringBuilder builder = new StringBuilder();
-		for(int index = removalSize-1; index>0; index--){
-			Character currentChar = wordRemoval.charAt(index);
-			if(currentChar.equals(' ')){
-				index = 0;
-				wordRemoval = wordRemoval.replaceAll(builder.toString(), "");
-				choicesSoFar.setText(wordRemoval.toString());
+
+		/*
+		 * Loop works backwards to first space
+		 * then from there creates the word forward that will be removed.
+		 */
+		while(removalIndex<removalSize){
+			Character currentChar = wordRemoval.charAt(removalIndex);
+			if(builder.length()!=0 || currentChar.equals(' ')){
+				builder.append(currentChar);
+				removalIndex++;
+				currentChar = wordRemoval.charAt(removalIndex);
+				if(removalIndex + 1 == removalSize){
+					currentChar = wordRemoval.charAt(removalIndex);
+					builder.append(currentChar);
+					removalIndex++;
+				}		
 			}
-			builder.append(wordRemoval.charAt(index));
+			else{
+				removalIndex--;
+			}
 		}
+		wordRemoval = wordRemoval.replaceAll(builder.toString(), "");
+		choicesSoFar.setText(wordRemoval.toString());
+		
 	}
 
 	/**
@@ -294,11 +310,6 @@ public class Options extends Window
 		constraint.gridx = 1;
 		constraint.gridy = 1;
 		grid.add(falseButton,constraint);
-		
-		constraint.anchor = GridBagConstraints.CENTER;
-		constraint.gridx = 1;
-		constraint.gridy = 2;
-		grid.add(backButton, constraint);
 		
 		mainWindow.validate();
 		mainWindow.repaint();
